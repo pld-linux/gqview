@@ -1,12 +1,12 @@
 Summary:	Graphics file browser utility
 Summary(pl):	Narzêdzie do przegl±dania plików graficznych
 Name:		gqview
-Version:	1.5.3
-Release:	2
+Version:	1.5.4
+Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/gqview/%{name}-%{version}.tar.gz
-# Source0-md5:	ee07dfd596d1a447f5bac310a3d9f4f0
+# Source0-md5:	278b508510bcf3c6404aaf15db1cd7cf
 # Source0-size:	1380088
 Patch0:		%{name}-etc_dir.patch
 Patch1:		%{name}-vfolders.patch
@@ -23,7 +23,7 @@ BuildRequires:	pkgconfig
 Requires:	libjpeg-progs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		specflags_ia32	 -fomit-frame-pointer 
+%define		specflags_ia32		-fomit-frame-pointer 
 %define		_noautocompressdoc	README
 
 %description
@@ -70,6 +70,12 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 %find_lang %{name}
+
+%post
+[ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1 ||:
+
+%postun
+[ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
