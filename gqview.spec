@@ -17,6 +17,8 @@ BuildRequires:	libpng-devel
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		specflags_ia32	"-fomit-frame-pointer"
+
 %description
 GQview is a browser for graphics files. Offering single click viewing
 of your graphics files. Includes thumbnail view, zoom and filtering
