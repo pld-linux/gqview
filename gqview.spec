@@ -15,6 +15,9 @@ BuildRequires:	gtk+-devel >= 1.2.0
 BuildRequires:	libpng-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
+
 %description
 GQview is a browser for graphics files. Offering single click viewing
 of your graphics files. Includes thumbnail view, zoom and filtering
