@@ -17,7 +17,7 @@ URL:		http://gqview.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
-BuildRequires:	gtk+2-devel >= 2.2.0
+BuildRequires:	gtk+2-devel >= 2:2.2.0
 BuildRequires:	libpng-devel
 BuildRequires:	pkgconfig
 Requires:	libjpeg-progs
