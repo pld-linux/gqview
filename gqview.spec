@@ -2,17 +2,17 @@ Summary:	graphics file browser utility
 Summary(pl):	narzêdzie do przegl±dania plików graficznych
 Name:		gqview
 Version:	0.6.0
-Release:	2
+Release:	3
 Copyright:	GPL
 Group:		X11/Applications/Graphics
 Group(pl):	X11/Aplikacje/Grafika
-Source0:	http://www.geocities.com/SiliconValley/Haven/5235/%{name}-%{version}.src.tgz
-Source1:	gqview.wmconfig
 URL:		http://www.geocities.com/SiliconValley/Haven/5235/view-over.html
+Source0:	http://www.geocities.com/SiliconValley/Haven/5235/%{name}-%{version}.src.tgz
+Patch:		gqview-desktop.patch
 BuildPrereq:	imlib-devel >= 1.8
 BuildPrereq:	gtk+-devel >= 1.2.0
+BuildPrereq:	glib-devel >= 1.2.0
 BuildPrereq:	XFree86-devel
-Requires:	gtk+ >= 1.2.0
 BuildRoot:      /tmp/%{name}-%{version}-root
 
 %description
@@ -22,13 +22,13 @@ Includes thumbnail view, zoom and filtering features.
 And external editor support.
 
 %description -l pl
-GQview jest przegl±dark± plików graficznych.
-Mo¿esz przegl±daæ swoje pliki graficzne jednym klikniêciem myszy.
-Zawiera widok miniatur, zoom i opcje filtrowania.
-Wsparcie dla zewnêtrznego edytora.
+GQview jest przegl±dark± plików graficznych. Mo¿esz przegl±daæ swoje 
+pliki graficzne jednym klikniêciem myszy. Zawiera widok miniatur, zoom 
+i opcje filtrowania, jak równie¿ wsparcie dla zewnêtrznego edytora.
 
 %prep
 %setup -q
+%patch -p0
 
 %build
 make CFLAGS="$RPM_OPT_FLAGS -I/usr/X11R6/include -I/usr/lib/glib/include" 
@@ -36,14 +36,12 @@ make CFLAGS="$RPM_OPT_FLAGS -I/usr/X11R6/include -I/usr/lib/glib/include"
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/usr/X11R6/{bin,share/{pixmaps,gnome/apps/Graphics}} \
-	$RPM_BUILD_ROOT/etc/X11/wmconfig
+install -d $RPM_BUILD_ROOT/usr/X11R6/{bin,share/pixmaps} \
+	$RPM_BUILD_ROOT/etc/X11/applnk/Graphics/Viewers
 
-make PREFIX="$RPM_BUILD_ROOT/usr/X11R6" \
-	GNOME_PREFIX="$RPM_BUILD_ROOT/usr/X11R6" \
-	gnome-install
-
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/X11/wmconfig/gqview
+install -s gqview $RPM_BUILD_ROOT/usr/X11R6/bin
+install gqview.png $RPM_BUILD_ROOT/usr/X11R6/share/pixmaps
+install gqview.desktop $RPM_BUILD_ROOT/etc/X11/applnk/Graphics/Viewers
 
 gzip -9nf README TODO BUGS ChangeLog
 
@@ -52,15 +50,23 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.gz TODO.gz BUGS.gz ChangeLog.gz
+%doc {README,TODO,BUGS,ChangeLog}.gz
 
 %attr(755,root,root) /usr/X11R6/bin/gqview
 /usr/X11R6/share/pixmaps/gqview.png
-/usr/X11R6/share/gnome/apps/Graphics/gqview.desktop
 
-%config /etc/X11/wmconfig/gqview
+/etc/X11/applnk/Graphics/Viewers/gqview.desktop
 
 %changelog
+* Fri May 14 1999 Piotr Czerwiñski <pius@pld.org.pl>
+  [0.6.0-3]
+- removed wmconfig file,
+- qgview.desktop file moved to /etc/X11/applnk/Graphics/Viewers,
+- added gqview-desktop.patch,
+- fixed BuildPrereq rules,
+- cosmetic changes for common l&f,
+- package is FHS 2.0 compliant.
+
 * Tue Apr 20 1999 Piotr Czerwiñski <pius@pld.org.pl>
   [0.6.0-2]
 - recompiled on rpm 3.
