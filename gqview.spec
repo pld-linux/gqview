@@ -11,6 +11,7 @@ Source1:	gqview.wmconfig
 URL:		http://www.geocities.com/SiliconValley/Haven/5235/view-over.html
 BuildPrereq:	imlib-devel >= 1.8
 BuildPrereq:	gtk+-devel >= 1.2.0
+BuildPrereq:	XFree86-devel
 Requires:	gtk+ >= 1.2.0
 BuildRoot:      /tmp/%{name}-%{version}-root
 
