@@ -2,14 +2,17 @@ Summary:	graphics file browser utility
 Summary(pl):	narzêdzie do przegl±dania plików graficznych
 Name:		gqview
 Version:	0.6.0
-Release:	1
+Release:	2
 Copyright:	GPL
 Group:		X11/Applications/Graphics
 Group(pl):	X11/Aplikacje/Grafika
 Source0:	http://www.geocities.com/SiliconValley/Haven/5235/%{name}-%{version}.src.tgz
 Source1:	gqview.wmconfig
 URL:		http://www.geocities.com/SiliconValley/Haven/5235/view-over.html
-Requires:	gtk+ = 1.2.1
+BuildPrereq:	imlib-devel >= 1.8
+BuildPrereq:	gtk+-devel >= 1.2.0
+Requires:	gtk+ >= 1.2.0
+%requires_pkg	imlib
 BuildRoot:      /tmp/%{name}-%{version}-root
 
 %description
@@ -58,6 +61,10 @@ rm -rf $RPM_BUILD_ROOT
 %config /etc/X11/wmconfig/gqview
 
 %changelog
+* Tue Apr 20 1999 Piotr Czerwiñski <pius@pld.org.pl>
+  [0.6.0-2]
+- recompiled on rpm 3.
+
 * Tue Mar 23 1999 Piotr Czerwiñski <pius@pld.org.pl>
   [0.6.0-1]
 - upgraded to 0.6.0,
