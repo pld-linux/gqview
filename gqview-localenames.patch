@@ -1,0 +1,11 @@
+--- gqview-1.3.8/configure.in.orig	Fri Jan 23 08:17:38 2004
++++ gqview-1.3.8/configure.in	Fri Jan 30 16:04:12 2004
+@@ -75,7 +75,7 @@
+ localedir='${datadir}/locale'
+ AC_SUBST(localedir)
+ 
+-ALL_LINGUAS="bg cs da de es et fi fr hu id it ja nl no pl pt_BR ro ru sk sl sv th tr uk vi zh_CN.GB2312 zh_TW"
++ALL_LINGUAS="bg cs da de es et fi fr hu id it ja nl nb pl pt_BR ro ru sk sl sv th tr uk vi zh_CN zh_TW"
+ AM_GNU_GETTEXT
+ 
+ AC_SUBST(CFLAGS)
