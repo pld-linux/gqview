@@ -1,240 +1,131 @@
-diff -Nru gqview-1.3.1/src/cache.c gqview-1.3.1.new/src/cache.c
---- gqview-1.3.1/src/cache.c	Fri Jan 11 05:42:17 2002
-+++ gqview-1.3.1.new/src/cache.c	Sat Mar 29 16:47:13 2003
-@@ -458,7 +458,12 @@
+diff -Nru gqview-1.3.4.orig/src/main.c gqview-1.3.4/src/main.c
+--- gqview-1.3.4.orig/src/main.c	2003-10-26 10:11:08.000000000 +0100
++++ gqview-1.3.4/src/main.c	2003-11-19 14:20:05.000000000 +0100
+@@ -380,8 +380,8 @@
  
- 	if (!path)
+ 	editor_reset_defaults();
+ 
+-	bookmark_add_default(_("Home"), homedir());
+-	path = concat_dir_and_file(homedir(), "Desktop");
++	bookmark_add_default(_("Home"), homedir_old());
++	path = concat_dir_and_file(homedir_old(), "Desktop");
+ 	bookmark_add_default(_("Desktop"), path);
+ 	g_free(path);
+ 	path = concat_dir_and_file(homedir(), GQVIEW_RC_DIR_COLLECTIONS);
+diff -Nru gqview-1.3.4.orig/src/ui_bookmark.c gqview-1.3.4/src/ui_bookmark.c
+--- gqview-1.3.4.orig/src/ui_bookmark.c	2003-10-26 09:21:27.000000000 +0100
++++ gqview-1.3.4/src/ui_bookmark.c	2003-11-19 14:14:44.000000000 +0100
+@@ -427,7 +427,7 @@
+ 	if (!text)
  		{
--		path = g_strconcat(homedir(), "/", GQVIEW_RC_DIR_THUMBS, base, name, ext, NULL);
-+		gchar *config_dir = getenv("CONFIG_DIR");
-+		
-+		if (config_dir)
-+			path = g_strconcat(config_dir, "/", GQVIEW_RC_DIR_THUMBS+1, base, name, ext, NULL);
-+		else
-+			path = g_strconcat(homedir(), "/", GQVIEW_RC_DIR_THUMBS, base, name, ext, NULL);
- 		if (mode) *mode = 0755;
+ 		b->name = g_strdup(_("New Bookmark"));
+-		b->path = g_strdup(homedir());
++		b->path = g_strdup(homedir_old());
+ 		b->key = NULL;
+ 		return b;
  		}
+@@ -842,11 +842,11 @@
  
-@@ -485,7 +490,12 @@
- 		}
- 	else
- 		{
--		path = g_strconcat(homedir(), "/", GQVIEW_RC_DIR_THUMBS, source, ext, NULL);
-+		gchar *config_dir = getenv("CONFIG_DIR");
-+		
-+		if (config_dir)
-+			path = g_strconcat(config_dir, "/", GQVIEW_RC_DIR_THUMBS+1, source, ext, NULL);
-+		else
-+			path = g_strconcat(homedir(), "/", GQVIEW_RC_DIR_THUMBS, source, ext, NULL);
- 		}
+ 		if (!bookmark_default_list)
+ 			{
+-			buf = bookmark_string(_("Home"), homedir(), NULL);
++			buf = bookmark_string(_("Home"), homedir_old(), NULL);
+ 			history_list_add_to_key(bm->key, buf, 0);
+ 			g_free(buf);
  
- 	if (!isfile(path))
-@@ -499,7 +509,12 @@
+-			path = concat_dir_and_file(homedir(), "Desktop");
++			path = concat_dir_and_file(homedir_old(), "Desktop");
+ 			if (isname(path))
+ 				{
+ 				buf = bookmark_string(_("Desktop"), path, NULL);
+diff -Nru gqview-1.3.4.orig/src/ui_fileops.c gqview-1.3.4/src/ui_fileops.c
+--- gqview-1.3.4.orig/src/ui_fileops.c	2003-10-31 17:31:32.000000000 +0100
++++ gqview-1.3.4/src/ui_fileops.c	2003-11-19 14:11:07.000000000 +0100
+@@ -35,7 +35,7 @@
+ gint file_sort_case_sensitive = FALSE;
+ 
+ /* first we try the HOME environment var, if that doesn't work, we try getpwuid(). */
+-const gchar *homedir(void)
++const gchar *homedir_old(void)
+ {
+ 	static gchar *home = NULL;
+ 
+@@ -52,6 +52,15 @@
+ 	return home;
+ }
+ 
++const gchar *homedir(void)
++{
++	static gchar *home_etc = NULL;
++	
++	if (!home_etc) home_etc = g_locale_to_utf8(getenv("HOME_ETC"), -1, NULL, NULL, NULL);
++	if (!home_etc) return homedir_old();
++	return home_etc;
++}
++
+ gint stat_utf8(const gchar *s, struct stat *st)
+ {
+ 	gchar *sl;
+diff -Nru gqview-1.3.4.orig/src/ui_fileops.h gqview-1.3.4/src/ui_fileops.h
+--- gqview-1.3.4.orig/src/ui_fileops.h	2003-10-31 17:31:51.000000000 +0100
++++ gqview-1.3.4/src/ui_fileops.h	2003-11-19 14:12:56.000000000 +0100
+@@ -21,7 +21,7 @@
+ 
+ extern gint file_sort_case_sensitive;
+ 
+-
++const gchar *homedir_old(void);
+ const gchar *homedir(void);
+ gint stat_utf8(const gchar *s, struct stat *st);
+ gint isname(const gchar *s);
+diff -Nru gqview-1.3.4.orig/src/ui_pathsel.c gqview-1.3.4/src/ui_pathsel.c
+--- gqview-1.3.4.orig/src/ui_pathsel.c	2003-10-26 09:08:45.000000000 +0100
++++ gqview-1.3.4/src/ui_pathsel.c	2003-11-19 14:15:52.000000000 +0100
+@@ -841,7 +841,7 @@
+ {
+ 	Dest_Data *dd = data;
+ 
+-	dest_change_dir(dd, homedir(), (dd->f_view != NULL));
++	dest_change_dir(dd, homedir_old(), (dd->f_view != NULL));
+ }
+ 
+ static void dest_show_hidden_cb(GtkWidget *widget, gpointer data)
+@@ -1208,7 +1208,7 @@
  			}
  		else
  			{
--			path = g_strconcat(homedir(), "/", GQVIEW_RC_DIR_THUMBS, source, ext, NULL);
-+			gchar *config_dir = getenv("CONFIG_DIR");
-+		
-+			if (config_dir)
-+				path = g_strconcat(config_dir, "/", GQVIEW_RC_DIR_THUMBS+1, source, ext, NULL);
-+			else
-+				path = g_strconcat(homedir(), "/", GQVIEW_RC_DIR_THUMBS, source, ext, NULL);
+-			dest_populate(dd, (gchar *)homedir());
++			dest_populate(dd, (gchar *)homedir_old());
+ 			if (path) gtk_entry_append_text(GTK_ENTRY(dd->entry), "/");
+ 			if (path) gtk_entry_append_text(GTK_ENTRY(dd->entry), path);
  			}
+diff -Nru gqview-1.3.4.orig/src/ui_tabcomp.c gqview-1.3.4/src/ui_tabcomp.c
+--- gqview-1.3.4.orig/src/ui_tabcomp.c	2003-10-26 08:38:43.000000000 +0100
++++ gqview-1.3.4/src/ui_tabcomp.c	2003-11-19 14:17:01.000000000 +0100
+@@ -140,7 +140,7 @@
+ 	if (text[0] == '~')
+ 		{
+ 		gchar *t = text;
+-		text = g_strconcat(homedir(), t + 1, NULL);
++		text = g_strconcat(homedir_old(), t + 1, NULL);
+ 		g_free(t);
  		}
  
-diff -Nru gqview-1.3.1/src/cache_maint.c gqview-1.3.1.new/src/cache_maint.c
---- gqview-1.3.1/src/cache_maint.c	Fri Jan 11 05:42:17 2002
-+++ gqview-1.3.1.new/src/cache_maint.c	Sat Mar 29 16:52:42 2003
-@@ -111,8 +111,12 @@
- 	gint just_done = FALSE;
- 	gint still_have_a_file = TRUE;
- 	gint base_length;
-+	const gchar *config_dir = getenv("CONFIG_DIR");
- 
--	base_length = strlen(homedir()) + strlen("/") + strlen(GQVIEW_RC_DIR_THUMBS);
-+	if (config_dir)
-+		base_length = strlen(config_dir) + strlen("/") + strlen(GQVIEW_RC_DIR_THUMBS+1);
-+	else
-+		base_length = strlen(homedir()) + strlen("/") + strlen(GQVIEW_RC_DIR_THUMBS);
- 
- 	if (!cm->list)
+@@ -160,7 +160,7 @@
+ 	if (text[0] == '~')
  		{
-@@ -224,8 +228,12 @@
- 	GList *dlist = NULL;
- 	gchar *base;
- 	const gchar *msg;
-+	const gchar *config_dir = getenv("CONFIG_DIR");
+ 		gchar *t = text;
+-		text = g_strconcat(homedir(), t + 1, NULL);
++		text = g_strconcat(homedir_old(), t + 1, NULL);
+ 		g_free(t);
+ 		}
  
--	base = g_strconcat(homedir(), "/", GQVIEW_RC_DIR_THUMBS, NULL);
-+	if (config_dir)
-+		base = g_strconcat(config_dir, "/", GQVIEW_RC_DIR_THUMBS+1, NULL);
-+	else
-+		base = g_strconcat(homedir(), "/", GQVIEW_RC_DIR_THUMBS, NULL);
- 
- 	if (!path_list(base, NULL, &dlist))
+@@ -328,7 +328,7 @@
+ 	/* home dir expansion */
+ 	if (entry_text[0] == '~')
  		{
-@@ -274,12 +282,17 @@
- 	GList *dlist = NULL;
- 	GList *flist = NULL;
- 	gint still_have_a_file = FALSE;
-+	const gchar *config_dir = getenv("CONFIG_DIR");
- 
- 	if (debug) printf("maintainance check: %s\n", dir);
- 
--	base_length = strlen(homedir()) + strlen("/") + strlen(GQVIEW_RC_DIR_THUMBS);
--	base = g_strconcat(homedir(), "/", GQVIEW_RC_DIR_THUMBS, dir, NULL);
--
-+	if (config_dir) {
-+		base_length = strlen(config_dir) + strlen("/") + strlen(GQVIEW_RC_DIR_THUMBS+1);
-+		base = g_strconcat(config_dir, "/", GQVIEW_RC_DIR_THUMBS+1, dir, NULL);
-+	} else {
-+		base_length = strlen(homedir()) + strlen("/") + strlen(GQVIEW_RC_DIR_THUMBS);
-+		base = g_strconcat(homedir(), "/", GQVIEW_RC_DIR_THUMBS, dir, NULL);
-+	}
- 	if (path_list(base, &flist, &dlist))
- 		{
- 		GList *work;
-diff -Nru gqview-1.3.1/src/collect-dlg.c gqview-1.3.1.new/src/collect-dlg.c
---- gqview-1.3.1/src/collect-dlg.c	Wed Jan 29 05:51:29 2003
-+++ gqview-1.3.1.new/src/collect-dlg.c	Sat Mar 29 16:54:30 2003
-@@ -159,6 +159,7 @@
- 	void *btnfunc;
- 	gchar *base;
- 	const gchar *stock_id;
-+	const gchar *config_dir = getenv("CONFIG_DIR");
- 
- 	if (type == DIALOG_SAVE || type == DIALOG_SAVE_CLOSE)
- 		{
-@@ -193,7 +194,10 @@
- 			     collection_save_or_load_dialog_close_cb, cd);
- 	file_dialog_add_button_stock(fd, btntext, stock_id, btnfunc, TRUE);
- 
--	base = g_strconcat(homedir(), "/", GQVIEW_RC_DIR_COLLECTIONS, NULL);
-+	if (config_dir)
-+		base = g_strconcat(config_dir, "/", GQVIEW_RC_DIR_COLLECTIONS+1, NULL);
-+	else
-+		base = g_strconcat(homedir(), "/", GQVIEW_RC_DIR_COLLECTIONS, NULL);
- 	file_dialog_add_path_widgets(fd, base, path,
- 				     "collection_load_save", ".gqv", _("Collection Files"));
- 	g_free(base);
-diff -Nru gqview-1.3.1/src/main.c gqview-1.3.1.new/src/main.c
---- gqview-1.3.1/src/main.c	Mon Mar  3 19:01:13 2003
-+++ gqview-1.3.1.new/src/main.c	Sat Mar 29 16:43:36 2003
-@@ -412,8 +412,12 @@
- static void keys_load(void)
- {
- 	gchar *path;
--
--	path = g_strconcat(homedir(), "/", GQVIEW_RC_DIR, "/", RC_HISTORY_NAME, NULL);
-+	gchar *config_dir = getenv("CONFIG_DIR");
-+	
-+	if (config_dir)
-+		path = g_strconcat(config_dir, "/", GQVIEW_RC_DIR+1, "/", RC_HISTORY_NAME, NULL);
-+	else
-+		path = g_strconcat(homedir(), "/", GQVIEW_RC_DIR, "/", RC_HISTORY_NAME, NULL);
- 	history_list_load(path);
- 	g_free(path);
- }
-@@ -421,8 +425,12 @@
- static void keys_save(void)
- {
- 	gchar *path;
--
--	path = g_strconcat(homedir(), "/", GQVIEW_RC_DIR, "/", RC_HISTORY_NAME, NULL);
-+	gchar *config_dir = getenv("CONFIG_DIR");
-+	
-+	if (config_dir)
-+		path = g_strconcat(config_dir, "/", GQVIEW_RC_DIR+1, "/", RC_HISTORY_NAME, NULL);
-+	else
-+		path = g_strconcat(homedir(), "/", GQVIEW_RC_DIR, "/", RC_HISTORY_NAME, NULL);
- 	history_list_save(path);
- 	g_free(path);
- }
-@@ -430,7 +438,12 @@
- static void check_for_home_path(gchar *path)
- {
- 	gchar *buf;
--	buf = g_strconcat(homedir(), "/", path, NULL);
-+	gchar *config_dir = getenv("CONFIG_DIR");
-+	
-+	if (config_dir)
-+		buf = g_strconcat(config_dir, "/", path+1, NULL);
-+	else
-+		buf = g_strconcat(homedir(), "/", path, NULL);
- 	if (!isdir(buf))
- 		{
- 		printf(_("Creating GQview dir:%s\n"), buf);
-@@ -468,7 +481,8 @@
- static void exit_gqview_final(void)
- {
- 	gchar *path;
--
-+	gchar *config_dir = getenv("CONFIG_DIR");
-+	
- 	layout_geometry_get(NULL, &main_window_x, &main_window_y,
- 			    &main_window_w, &main_window_h);
- 
-@@ -487,7 +501,10 @@
- 	save_options();
- 	keys_save();
- 
--	path = g_strconcat(homedir(), "/", GQVIEW_RC_DIR, "/accels", NULL);
-+	if (config_dir)
-+		path = g_strconcat(config_dir, "/", GQVIEW_RC_DIR+1, "/accels", NULL);
-+	else
-+		path = g_strconcat(homedir(), "/", GQVIEW_RC_DIR, "/accels", NULL);
- 	gtk_accel_map_save(path);
- 	g_free(path);
- 
-@@ -547,6 +564,7 @@
- 	GList *cmd_list = NULL;
- 	GList *collection_list = NULL;
- 	gchar *buf;
-+	gchar *config_dir = getenv("CONFIG_DIR");
- 
- 	/* setup locale, i18n */
- 	gtk_set_locale();
-@@ -581,7 +599,10 @@
- 	load_options();
- 	keys_load();
- 
--	buf = g_strconcat(homedir(), "/", GQVIEW_RC_DIR, "/accels", NULL);
-+	if (config_dir)
-+		buf = g_strconcat(config_dir, "/", GQVIEW_RC_DIR+1, "/accels", NULL);
-+	else
-+		buf = g_strconcat(homedir(), "/", GQVIEW_RC_DIR, "/accels", NULL);
- 	gtk_accel_map_load(buf);
- 	g_free(buf);
- 
-diff -Nru gqview-1.3.1/src/rcfile.c gqview-1.3.1.new/src/rcfile.c
---- gqview-1.3.1/src/rcfile.c	Wed Jan 29 00:45:40 2003
-+++ gqview-1.3.1.new/src/rcfile.c	Sat Mar 29 16:57:40 2003
-@@ -124,8 +124,12 @@
- 	FILE *f;
- 	gchar *rc_path;
- 	gint i;
-+	const gchar *config_dir = getenv("CONFIG_DIR");
- 
--	rc_path = g_strconcat(homedir(), "/", GQVIEW_RC_DIR, "/", RC_FILE_NAME, NULL);
-+	if (config_dir)
-+		rc_path = g_strconcat(config_dir, "/", GQVIEW_RC_DIR+1, "/", RC_FILE_NAME, NULL);
-+	else
-+		rc_path = g_strconcat(homedir(), "/", GQVIEW_RC_DIR, "/", RC_FILE_NAME, NULL);
- 
- 	f = fopen(rc_path,"w");
- 	if (!f)
-@@ -292,8 +296,12 @@
- 	gchar value[1024];
- 	gchar value_all[1024];
- 	gint c,l,i;
-+	const gchar *config_dir = getenv("CONFIG_DIR");
- 
--	rc_path = g_strconcat(homedir(), "/", GQVIEW_RC_DIR, "/", RC_FILE_NAME, NULL);
-+	if (config_dir)
-+		rc_path = g_strconcat(config_dir, "/", GQVIEW_RC_DIR+1, "/", RC_FILE_NAME, NULL);
-+	else
-+		rc_path = g_strconcat(homedir(), "/", GQVIEW_RC_DIR, "/", RC_FILE_NAME, NULL);
- 
- 	f = fopen(rc_path,"r");
- 	if (!f)
+-		entry_dir = g_strconcat(homedir(), entry_text + 1, NULL);
++		entry_dir = g_strconcat(homedir_old(), entry_text + 1, NULL);
+ 		home_exp = TRUE;
+ 		}
+ 	else
