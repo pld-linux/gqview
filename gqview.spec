@@ -33,12 +33,13 @@ make CFLAGS="$RPM_OPT_FLAGS -I/usr/X11R6/include -I/usr/lib/glib/include"
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/usr/X11R6/{bin,share/{pixmaps,apps/Graphics}} \
+install -d $RPM_BUILD_ROOT/usr/X11R6/{bin,share/{pixmaps,gnome/apps/Graphics}} \
 	$RPM_BUILD_ROOT/etc/X11/wmconfig
 
-install gqview $RPM_BUILD_ROOT/usr/X11R6/bin
-install gqview.png $RPM_BUILD_ROOT/usr/X11R6/share/pixmaps 
-install gqview.desktop $RPM_BUILD_ROOT/usr/X11R6/share/apps/Graphics
+make PREFIX="$RPM_BUILD_ROOT/usr/X11R6" \
+	GNOME_PREFIX="$RPM_BUILD_ROOT/usr/X11R6" \
+	gnome-install
+
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/X11/wmconfig/gqview
 
 gzip -9nf README TODO BUGS ChangeLog
@@ -52,7 +53,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) /usr/X11R6/bin/gqview
 /usr/X11R6/share/pixmaps/gqview.png
-/usr/X11R6/share/apps/Graphics/gqview.desktop
+/usr/X11R6/share/gnome/apps/Graphics/gqview.desktop
 
 %config /etc/X11/wmconfig/gqview
 
