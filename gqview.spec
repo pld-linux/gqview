@@ -1,12 +1,12 @@
 Summary:	Graphics file browser utility
 Summary(pl):	Narzêdzie do przegl±dania plików graficznych
 Name:		gqview
-Version:	1.5.1
+Version:	1.5.2
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/gqview/%{name}-%{version}.tar.gz
-# Source0-md5:	0e25875144617cebd0de26889d405cf6
+# Source0-md5:	68da2ff39715e0dad326705c25d8d343
 Patch0:		%{name}-etc_dir.patch
 Patch1:		%{name}-vfolders.patch
 Patch2:		%{name}-home_etc.patch
@@ -77,6 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO ChangeLog
 %attr(755,root,root) %{_bindir}/gqview
+%{_datadir}/gqview
 %{_desktopdir}/gqview.desktop
 %{_pixmapsdir}/gqview.png
 %{_mandir}/man1/*

@@ -1,28 +1,21 @@
-diff -burN gqview-1.4.1.orig/gqview.desktop gqview-1.4.1/gqview.desktop
---- gqview-1.4.1.orig/gqview.desktop	2004-03-02 10:28:41.266573448 +0100
-+++ gqview-1.4.1/gqview.desktop	2004-03-02 10:30:13.056619240 +0100
-@@ -14,4 +14,4 @@
+diff -burN gqview-1.5.2.orig/gqview.desktop gqview-1.5.2/gqview.desktop
+--- gqview-1.5.2.orig/gqview.desktop	2004-08-28 11:14:25.844191184 +0200
++++ gqview-1.5.2/gqview.desktop	2004-08-28 11:19:24.938721904 +0200
+@@ -5,8 +5,10 @@
+ GenericName[tr]=Resim göstericisi
+ GenericName[fr]=Explorateur d'images
+ GenericName[hu]=Képnéző
++GenericName[pl]=Przeglądarka obrazków
+ Comment=View and manage images
+ Comment[hu]=Képek megjelenítése és rendszerezése
++Comment[pl]=Przeglądanie i manipulowanie obrazkami
+ Exec=gqview
+ Icon=gqview.png
+ Type=Application
+@@ -14,4 +16,5 @@
  StartupNotify=false
  StartupWMClass=gqview
  Encoding=UTF-8
 -Categories=Application;Graphics;
 +Categories=Application;Graphics;Viewer;
-diff -burN gqview-1.4.1.orig/Makefile.am gqview-1.4.1/Makefile.am
---- gqview-1.4.1.orig/Makefile.am	2004-03-02 10:28:41.269572992 +0100
-+++ gqview-1.4.1/Makefile.am	2004-03-02 10:29:49.404214952 +0100
-@@ -14,13 +14,11 @@
- helpdir = $(prefix)/share/gqview
- help_DATA = README
- 
--if HAVE_GNOME
--desktopdir = $(GNOME_DATADIR)/gnome/apps/Graphics
-+desktopdir = /usr/share/applications
- desktop_DATA = gqview.desktop
- 
--icondir = $(GNOME_DATADIR)/pixmaps
-+icondir = /usr/share/pixmaps
- icon_DATA = gqview.png
--endif
- 
- dist-hook: gqview.spec
- 	cp $(top_builddir)/gqview.spec $(distdir)
++# vi: encoding=utf-8

@@ -1,12 +1,12 @@
-diff -urN gqview-1.4.0.orig/configure.in gqview-1.4.0/configure.in
---- gqview-1.4.0.orig/configure.in	2004-02-21 00:22:17.000000000 +0100
-+++ gqview-1.4.0/configure.in	2004-02-29 15:24:11.000000000 +0100
-@@ -60,7 +60,7 @@
-   AC_SUBST(XINERAMA_LIBS)
- fi
+diff -burN gqview-1.5.2.orig/configure.in gqview-1.5.2/configure.in
+--- gqview-1.5.2.orig/configure.in	2004-08-28 11:14:25.843191336 +0200
++++ gqview-1.5.2/configure.in	2004-08-28 11:22:32.347231480 +0200
+@@ -46,7 +46,7 @@
+ AC_SUBST(LIBPNG)
+ AM_CONDITIONAL(HAVE_PNG, test "x$LIBPNG" != x)
  
 -AC_DEFINE_UNQUOTED(GQVIEW_HELPDIR, "$prefix/share/gqview")
-+AC_DEFINE_UNQUOTED(GQVIEW_HELPDIR, "$prefix/share/doc/gqview-1.5.1")
++AC_DEFINE_UNQUOTED(GQVIEW_HELPDIR, "$prefix/share/doc/gqview-1.5.2")
+ AC_DEFINE_UNQUOTED(GQVIEW_HTMLDIR, "$prefix/share/gqview/help")
  
- dnl CHECK_GNOME
-   AC_PATH_PROG(GNOME_CONFIG,gnome-config,no)
+ dnl checks for functions
