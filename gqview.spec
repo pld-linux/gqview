@@ -15,8 +15,8 @@ BuildRequires:	glib-devel >= 1.2.0
 BuildRequires:	XFree86-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
-%define	_prefix		/usr/X11R6
-%define	_sysconfdir	/etc/X11
+%define		_prefix		/usr/X11R6
+%define		_applnkdir	%{_datadir}/applnk
 
 %description
 GQview is a browser for graphics files.
@@ -40,11 +40,11 @@ make CFLAGS="$RPM_OPT_FLAGS -I/usr/X11R6/include -I/usr/lib/glib/include"
 rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/pixmaps} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/applnk/Graphics/Viewers
+	$RPM_BUILD_ROOT%{_applnkdir}/Graphics/Viewers
 
 install -s %{name} $RPM_BUILD_ROOT%{_bindir}
 install %{name}.png $RPM_BUILD_ROOT%{_datadir}/pixmaps
-install %{name}.desktop $RPM_BUILD_ROOT%{_sysconfdir}/applnk/Graphics/Viewers
+install %{name}.desktop $RPM_BUILD_ROOT%{_applnkdir}/Graphics/Viewers
 
 gzip -9nf README TODO BUGS ChangeLog
 
@@ -58,4 +58,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/%{name}
 %{_datadir}/pixmaps/%{name}.png
 
-%{_sysconfdir}/applnk/Graphics/Viewers/%{name}.desktop
+%{_applnkdir}/Graphics/Viewers/%{name}.desktop
