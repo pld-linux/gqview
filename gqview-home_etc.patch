@@ -77,10 +77,10 @@ diff -Nru gqview-1.3.5/src/ui_fileops.h.orig gqview-1.3.5/src/ui_fileops.h
  const gchar *homedir(void);
  gint stat_utf8(const gchar *s, struct stat *st);
  gint isname(const gchar *s);
-diff -Nru gqview-1.3.4.orig/src/ui_pathsel.c gqview-1.3.4/src/ui_pathsel.c
---- gqview-1.3.4.orig/src/ui_pathsel.c	2003-10-26 09:08:45.000000000 +0100
-+++ gqview-1.3.4/src/ui_pathsel.c	2003-11-19 14:15:52.000000000 +0100
-@@ -841,7 +841,7 @@
+diff -Nru gqview-1.3.6/src/ui_pathsel.c.orig gqview-1.3.6/src/ui_pathsel.c
+--- gqview-1.3.6/src/ui_pathsel.c.orig	2003-12-15 00:56:22.000000000 +0100
++++ gqview-1.3.6/src/ui_pathsel.c	2003-12-17 19:30:23.000000000 +0100
+@@ -828,7 +828,7 @@
  {
  	Dest_Data *dd = data;
  
@@ -89,14 +89,14 @@ diff -Nru gqview-1.3.4.orig/src/ui_pathsel.c gqview-1.3.4/src/ui_pathsel.c
  }
  
  static void dest_show_hidden_cb(GtkWidget *widget, gpointer data)
-@@ -1208,7 +1208,7 @@
- 			}
- 		else
+@@ -1200,7 +1200,7 @@
  			{
+ 			gint pos = -1;
+ 
 -			dest_populate(dd, (gchar *)homedir());
 +			dest_populate(dd, (gchar *)homedir_old());
- 			if (path) gtk_entry_append_text(GTK_ENTRY(dd->entry), "/");
- 			if (path) gtk_entry_append_text(GTK_ENTRY(dd->entry), path);
+ 			if (path) gtk_editable_insert_text(GTK_EDITABLE(dd->entry), "/", -1, &pos);
+ 			if (path) gtk_editable_insert_text(GTK_EDITABLE(dd->entry), path, -1, &pos);
  			}
 diff -Nru gqview-1.3.4.orig/src/ui_tabcomp.c gqview-1.3.4/src/ui_tabcomp.c
 --- gqview-1.3.4.orig/src/ui_tabcomp.c	2003-10-26 08:38:43.000000000 +0100
