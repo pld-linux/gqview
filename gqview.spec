@@ -9,7 +9,7 @@ Group(de):	X11/Applikationen/Grafik
 Group(pl):	X11/Aplikacje/Grafika
 Source0:	ftp://download.sourceforge.net/pub/sourceforge/gqview/%{name}-%{version}.tar.gz
 URL:		http://gqview.sourceforge.net/
-BuildRequires:	gdk-pixbuf--devel >= 0.9.0
+BuildRequires:	gdk-pixbuf-devel >= 0.9.0
 BuildRequires:	gtk+-devel >= 1.2.0
 BuildRequires:	gettext-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
