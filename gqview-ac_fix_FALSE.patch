@@ -1,0 +1,12 @@
+--- gqview-1.0.2/configure.in~	Mon Feb  4 06:10:49 2002
++++ gqview-1.0.2/configure.in	Mon Feb  4 06:10:49 2002
+@@ -63,9 +63,6 @@
+ dnl checks for functions
+ AC_CHECK_FUNCS(strverscmp)
+ 
+-dnl utility conditional
+-AM_CONDITIONAL(FALSE, test "x" = "y")
+-
+ dnl locale location for po
+ localedir='${prefix}/share/locale'
+ AC_SUBST(localedir)
