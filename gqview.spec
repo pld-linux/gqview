@@ -17,6 +17,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	libpng-devel
 BuildRequires:	pkgconfig
+Requires:	libjpeg-progs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		specflags_ia32	"-fomit-frame-pointer"
