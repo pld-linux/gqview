@@ -1,8 +1,8 @@
 Summary:	graphics file browser utility
 Summary(pl):	narzêdzie do przegl±dania plików graficznych
 Name:		gqview
-Version:	0.6.0
-Release:	3
+Version:	0.6.1
+Release:	1
 Copyright:	GPL
 Group:		X11/Applications/Graphics
 Group(pl):	X11/Aplikacje/Grafika
@@ -14,6 +14,9 @@ BuildPrereq:	gtk+-devel >= 1.2.0
 BuildPrereq:	glib-devel >= 1.2.0
 BuildPrereq:	XFree86-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
+
+%define	_prefix		/usr/X11R6
+%define	_sysconfdir	/etc/X11
 
 %description
 GQview is a browser for graphics files.
@@ -31,17 +34,17 @@ i opcje filtrowania, jak równie¿ wsparcie dla zewnêtrznego edytora.
 %patch -p0
 
 %build
-make CFLAGS="$RPM_OPT_FLAGS -I/usr/X11R6/include -I%{_libdir}/glib/include" 
+make CFLAGS="$RPM_OPT_FLAGS -I/usr/X11R6/include -I/usr/lib/glib/include" 
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/usr/X11R6/{bin,share/pixmaps} \
-	$RPM_BUILD_ROOT/etc/X11/applnk/Graphics/Viewers
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/pixmaps} \
+	$RPM_BUILD_ROOT%{_sysconfdir}/applnk/Graphics/Viewers
 
-install -s gqview $RPM_BUILD_ROOT/usr/X11R6/bin
-install gqview.png $RPM_BUILD_ROOT/usr/X11R6/share/pixmaps
-install gqview.desktop $RPM_BUILD_ROOT/etc/X11/applnk/Graphics/Viewers
+install -s %{name} $RPM_BUILD_ROOT%{_bindir}
+install %{name}.png $RPM_BUILD_ROOT%{_datadir}/pixmaps
+install %{name}.desktop $RPM_BUILD_ROOT%{_sysconfdir}/applnk/Graphics/Viewers
 
 gzip -9nf README TODO BUGS ChangeLog
 
@@ -52,49 +55,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc {README,TODO,BUGS,ChangeLog}.gz
 
-%attr(755,root,root) /usr/X11R6/bin/gqview
-/usr/X11R6/share/pixmaps/gqview.png
+%attr(755,root,root) %{_bindir}/%{name}
+%{_datadir}/pixmaps/%{name}.png
 
-/etc/X11/applnk/Graphics/Viewers/gqview.desktop
+%{_sysconfdir}/applnk/Graphics/Viewers/%{name}.desktop
 
 %changelog
-* Fri May 14 1999 Piotr Czerwiñski <pius@pld.org.pl>
-  [0.6.0-3]
-- removed wmconfig file,
-- qgview.desktop file moved to /etc/X11/applnk/Graphics/Viewers,
-- added gqview-desktop.patch,
-- fixed BuildPrereq rules,
-- cosmetic changes for common l&f,
-- package is FHS 2.0 compliant.
-
-* Tue Apr 20 1999 Piotr Czerwiñski <pius@pld.org.pl>
-  [0.6.0-2]
-- recompiled on rpm 3.
-
-* Tue Mar 23 1999 Piotr Czerwiñski <pius@pld.org.pl>
-  [0.6.0-1]
-- upgraded to 0.6.0,
-- changed Source to %%{name}-%%{version}.src.tgz,
-- added wmconfig file,
-- added "Requires: gtk+ >= 1.2.0",
-- added using $RPM_OPT_FLAGS during compile,
-- changed install base directory to /usr/X11R6,
-- added pl translation,
-- added -q %setup parameter,
-- added %clean section,
-- simplifications in %install,
-- added gzipping documentation,
-- added %attr macro and fixed %defattr description in %files,
-- removed gqview.png and gqview.desktop from %doc, added BUGS and ChangeLog.
-
-* Wed Oct 7 1998 John Ellis <gqview@geocities.com>
-- updated for version 0.4.2
-
-* Fri Sep 11 1998 John Ellis <gqview@geocities.com>
-- updated for version 0.4.1
-
-* Sat Aug 15 1998 John Ellis <gqview@geocities.com>
-- updated for version 0.4.0
-
-* Wed Aug 5 1998 Joel Young <jyoung@erols.com>
-- enhanced rpm .spec file
+* Tue Jun 1 1999 Piotr Czerwiñski <pius@pld.org.pl> 
+  [0.6.1-1]
+- package is FHS 2.0 compliant,
+- spec file rewritten for PLD use,
+- based on spec by John Ellis <gqview@geocities.com>.
