@@ -6,7 +6,7 @@ Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Group(pl):	X11/Aplikacje/Grafika
-Source0:	http://download.sourceforge.net/gqview/%{name}-%{version}.tar.gz
+Source0:	ftp://download.sourceforge.net/pub/sourceforge/gqview/%{name}-%{version}.tar.gz
 URL:		http://gqview.sourceforge.net/
 BuildRequires:	imlib-devel >= 1.8
 BuildRequires:	gtk+-devel >= 1.2.0
