@@ -6,6 +6,7 @@ Release:	2
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/gqview/%{name}-%{version}.tar.gz
+# Source0-md5: 339e64d5454c8e831887f05983e184e6
 Patch0:		%{name}-etc_dir.patch
 URL:		http://gqview.sourceforge.net/
 BuildRequires:	autoconf
