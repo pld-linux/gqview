@@ -6,9 +6,9 @@ Release:	1
 Copyright:	GPL
 Group:		X11/Applications/Graphics
 Group(pl):	X11/Aplikacje/Grafika
-URL:		http://www.geocities.com/SiliconValley/Haven/5235/view-over.html
 Source0:	http://www.geocities.com/SiliconValley/Haven/5235/%{name}-%{version}.src.tgz
 Patch:		gqview-desktop.patch
+URL:		http://www.geocities.com/SiliconValley/Haven/5235/view-over.html
 BuildPrereq:	imlib-devel >= 1.8
 BuildPrereq:	gtk+-devel >= 1.2.0
 BuildPrereq:	glib-devel >= 1.2.0
