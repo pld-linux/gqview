@@ -1,0 +1,12 @@
+diff -urN gqview-1.4.0.orig/configure.in gqview-1.4.0/configure.in
+--- gqview-1.4.0.orig/configure.in	2004-02-21 00:22:17.000000000 +0100
++++ gqview-1.4.0/configure.in	2004-02-29 15:24:11.000000000 +0100
+@@ -60,7 +60,7 @@
+   AC_SUBST(XINERAMA_LIBS)
+ fi
+ 
+-AC_DEFINE_UNQUOTED(GQVIEW_HELPDIR, "$prefix/share/gqview")
++AC_DEFINE_UNQUOTED(GQVIEW_HELPDIR, "$prefix/share/doc/gqview-1.4.0")
+ 
+ dnl CHECK_GNOME
+   AC_PATH_PROG(GNOME_CONFIG,gnome-config,no)
