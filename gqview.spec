@@ -59,14 +59,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/%{name}.png
 
 %{_sysconfdir}/applnk/Graphics/Viewers/%{name}.desktop
-
-%changelog
-* Sun Jul 04 1999 Piotr Czerwiñski <pius@pld.org.pl> 
-  [0.7.0-1]
-- updated to 0.7.0.
-
-* Tue Jun 1 1999 Piotr Czerwiñski <pius@pld.org.pl> 
-  [0.6.1-1]
-- package is FHS 2.0 compliant,
-- spec file rewritten for PLD use,
-- based on spec by John Ellis <gqview@geocities.com>.
