@@ -6,7 +6,7 @@ Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Group(pl):	X11/Aplikacje/Grafika
-Source:		http://download.sourceforge.net/gqview/%{name}-%{version}.tar.gz
+Source0:	http://download.sourceforge.net/gqview/%{name}-%{version}.tar.gz
 URL:		http://gqview.sourceforge.net/
 BuildRequires:	imlib-devel >= 1.8
 BuildRequires:	gtk+-devel >= 1.2.0
@@ -16,14 +16,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_prefix		/usr/X11R6
 
 %description
-GQview is a browser for graphics files.
-Offering single click viewing of your graphics files.
-Includes thumbnail view, zoom and filtering features.
-And external editor support.
+GQview is a browser for graphics files. Offering single click viewing
+of your graphics files. Includes thumbnail view, zoom and filtering
+features. And external editor support.
 
 %description -l pl
-GQview jest przegl±dark± plików graficznych. Mo¿esz przegl±daæ swoje 
-pliki graficzne jednym klikniêciem myszy. Zawiera widok miniatur, zoom 
+GQview jest przegl±dark± plików graficznych. Mo¿esz przegl±daæ swoje
+pliki graficzne jednym klikniêciem myszy. Zawiera widok miniatur, zoom
 i opcje filtrowania, jak równie¿ wsparcie dla zewnêtrznego edytora.
 
 %prep
