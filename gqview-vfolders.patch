@@ -9,7 +9,7 @@ diff -burN gqview-1.5.2.orig/gqview.desktop gqview-1.5.2/gqview.desktop
  Comment=View and manage images
  Comment[hu]=Képek megjelenítése és rendszerezése
 +Comment[pl]=Przeglądanie i manipulowanie obrazkami
- Exec=gqview
+ Exec=gqview -r %F
  Icon=gqview.png
  Type=Application
 @@ -14,4 +16,5 @@
@@ -17,5 +17,5 @@ diff -burN gqview-1.5.2.orig/gqview.desktop gqview-1.5.2/gqview.desktop
  StartupWMClass=gqview
  Encoding=UTF-8
 -Categories=Application;Graphics;
-+Categories=GTK;Graphics;Viewer;
++Categories=Application;Graphics;Viewer;
 +# vi: encoding=utf-8
