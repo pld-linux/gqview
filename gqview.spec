@@ -22,7 +22,7 @@ BuildRequires:	pkgconfig
 Requires:	libjpeg-progs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		specflags_ia32	"-fomit-frame-pointer"
+%define		specflags_ia32	 -fomit-frame-pointer 
 %define		_noautocompressdoc	README
 
 %description
