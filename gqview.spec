@@ -30,7 +30,7 @@ i opcje filtrowania, jak równie¿ wsparcie dla zewnêtrznego edytora.
 %setup -q
 
 %build
-rm -f missinf
+rm -f missing
 %{__aclocal}
 %{__autoconf}
 %{__automake}
