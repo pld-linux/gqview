@@ -1,7 +1,7 @@
 Summary:	graphics file browser utility
 Summary(pl):	Narzêdzie do przegl±dania plików graficznych
 Name:		gqview
-Version:	1.1.5
+Version:	1.1.6
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
@@ -44,6 +44,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	desktopdir=%{_applnkdir}/Graphics/Viewers
+
+install -d $RPM_BUILD_ROOT{%{_pixmapsdir},%{_applnkdir}/Graphics/Viewers}
+install %{name}.png $RPM_BUILD_ROOT%{_pixmapsdir}
+install %{name}.desktop $RPM_BUILD_ROOT%{_applnkdir}/Graphics/Viewers
 
 %find_lang %{name}
 
