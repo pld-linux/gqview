@@ -6,9 +6,9 @@ Release:	1
 Copyright:	GPL
 Group:		X11/Applications/Graphics
 Group(pl):	X11/Aplikacje/Grafika
-Source0:	%{name}-%{version}.src.tgz
+Source0:	http://www.geocities.com/SiliconValley/Haven/5235/%{name}-%{version}.src.tgz
 Source1:	gqview.wmconfig
-URL:		http://www.geocities.com/SiliconValley/Haven/5235/
+URL:		http://www.geocities.com/SiliconValley/Haven/5235/view-over.html
 BuildRoot:      /tmp/%{name}-%{version}-root
 Requires:	gtk+ >= 1.2.0
 
