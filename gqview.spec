@@ -5,7 +5,7 @@ Version:	1.2.1
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/gqview/%{name}-%{version}.tar.gz
 URL:		http://gqview.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -19,6 +19,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 GQview is a browser for graphics files. Offering single click viewing
 of your graphics files. Includes thumbnail view, zoom and filtering
 features. And external editor support.
+
+%description -l fr
+GQview est un explorateur de fichiers graphiques. Il permet d'un
+simple clic l'affichage de vos fichiers graphiques. Les capacités
+suivantes sont incluses: vue d'imagettes, zoom, filtres et support
+d'éditeurs externes.
 
 %description -l pl
 GQview jest przegl±dark± plików graficznych. Mo¿esz przegl±daæ swoje
@@ -58,7 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc README TODO ChangeLog
+%doc AUTHORS README TODO ChangeLog
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
 %{_pixmapsdir}/*
