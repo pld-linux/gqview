@@ -12,7 +12,6 @@ URL:		http://www.geocities.com/SiliconValley/Haven/5235/view-over.html
 BuildPrereq:	imlib-devel >= 1.8
 BuildPrereq:	gtk+-devel >= 1.2.0
 Requires:	gtk+ >= 1.2.0
-%requires_pkg	imlib
 BuildRoot:      /tmp/%{name}-%{version}-root
 
 %description
