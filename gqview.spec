@@ -1,7 +1,7 @@
 Summary:	graphics file browser utility
 Summary(pl):	Narzêdzie do przegl±dania plików graficznych
 Name:		gqview
-Version:	1.1.4
+Version:	1.1.5
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
@@ -30,7 +30,11 @@ i opcje filtrowania, jak równie¿ wsparcie dla zewnêtrznego edytora.
 %setup -q
 
 %build
-%configure2_13
+rm -f missinf
+aclocal
+%{__autoconf}
+%{__automake}
+%configure
 
 %{__make}
 
@@ -41,8 +45,6 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	desktopdir=%{_applnkdir}/Graphics/Viewers
 
-gzip -9nf README TODO ChangeLog
-
 %find_lang %{name}
 
 %clean
@@ -50,7 +52,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc *.gz
+%doc README TODO ChangeLog
 %attr(755,root,root) %{_bindir}/*
 %{_pixmapsdir}/*
 %{_applnkdir}/Graphics/Viewers/*
