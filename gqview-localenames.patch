@@ -6,7 +6,7 @@ diff -ruN gqview-1.5.7./configure.in gqview-1.5.7/configure.in
  AC_SUBST(localedir)
  
 -ALL_LINGUAS="ar bg cs da de es et fi fr hu id it ja nl no pl pt_BR ro ru sk sl sv th tr uk vi zh_CN.GB2312 zh_TW"
-+ALL_LINGUAS="ar bg cs da de es et fi fr hu id it ja nl no pl pt_BR ro ru sk sl sv th tr uk vi zh_CN zh_TW"
++ALL_LINGUAS="ar bg cs da de es et fi fr hu id it ja nl nb pl pt_BR ro ru sk sl sv th tr uk vi zh_CN zh_TW"
  GETTEXT_PACKAGE=$PACKAGE
  AC_SUBST(GETTEXT_PACKAGE)
  AM_GLIB_GNU_GETTEXT
