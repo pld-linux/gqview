@@ -1,18 +1,20 @@
 Summary:	graphics file browser utility
 Summary(pl):	narzêdzie do przegl±dania plików graficznych
 Name:		gqview
-Version:	0.7.0
-Release:	2
+Version:	0.8.0
+Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Group(pl):	X11/Aplikacje/Grafika
-Source:		http://www.geocities.com/SiliconValley/Haven/5235/%{name}-%{version}.src.tgz
-Patch:		gqview-desktop.patch
+Source:		http://www.geocities.com/SiliconValley/Haven/5235/%{name}-%{version}.tar.gz
+Patch:		gqview-applnk.patch
 URL:		http://www.geocities.com/SiliconValley/Haven/5235/view-over.html
 BuildRequires:	imlib-devel >= 1.8
 BuildRequires:	gtk+-devel >= 1.2.0
 BuildRequires:	glib-devel >= 1.2.0
 BuildRequires:	XFree86-devel
+BuildRequires:	gettext-devel
+BuildRequires:	automake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -30,31 +32,35 @@ i opcje filtrowania, jak równie¿ wsparcie dla zewnêtrznego edytora.
 
 %prep
 %setup -q
-%patch -p0
+%patch -p1
 
 %build
-make CFLAGS="$RPM_OPT_FLAGS -I/usr/X11R6/include -I/usr/lib/glib/include" 
+autoheader
+autoconf
+automake
+gettextize --copy --force
+
+LDFLAGS="-s"; export LDFLAGS
+%configure
+
+make
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/pixmaps} \
-	$RPM_BUILD_ROOT%{_applnkdir}/Graphics/Viewers
-
-install -s %{name} $RPM_BUILD_ROOT%{_bindir}
-install %{name}.png $RPM_BUILD_ROOT%{_datadir}/pixmaps
-install %{name}.desktop $RPM_BUILD_ROOT%{_applnkdir}/Graphics/Viewers
+make DESTDIR=$RPM_BUILD_ROOT install
 
 gzip -9nf README TODO BUGS ChangeLog
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc {README,TODO,BUGS,ChangeLog}.gz
 
 %attr(755,root,root) %{_bindir}/%{name}
 %{_datadir}/pixmaps/%{name}.png
-
-%{_applnkdir}/Graphics/Viewers/%{name}.desktop
+%{_applnkdir}/Graphics/%{name}.desktop
