@@ -9,10 +9,10 @@ Group(pl):	X11/Aplikacje/Grafika
 Source0:	http://www.geocities.com/SiliconValley/Haven/5235/%{name}-%{version}.src.tgz
 Patch:		gqview-desktop.patch
 URL:		http://www.geocities.com/SiliconValley/Haven/5235/view-over.html
-BuildPrereq:	imlib-devel >= 1.8
-BuildPrereq:	gtk+-devel >= 1.2.0
-BuildPrereq:	glib-devel >= 1.2.0
-BuildPrereq:	XFree86-devel
+BuildRequires:	imlib-devel >= 1.8
+BuildRequires:	gtk+-devel >= 1.2.0
+BuildRequires:	glib-devel >= 1.2.0
+BuildRequires:	XFree86-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %define	_prefix		/usr/X11R6
