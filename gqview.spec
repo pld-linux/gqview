@@ -1,7 +1,7 @@
 Summary:	graphics file browser utility
 Summary(pl):	narzêdzie do przegl±dania plików graficznych
 Name:		gqview
-Version:	0.6.1
+Version:	0.7.0
 Release:	1
 Copyright:	GPL
 Group:		X11/Applications/Graphics
@@ -61,6 +61,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/applnk/Graphics/Viewers/%{name}.desktop
 
 %changelog
+* Sun Jul 04 1999 Piotr Czerwiñski <pius@pld.org.pl> 
+  [0.7.0-1]
+- updated to 0.7.0.
+
 * Tue Jun 1 1999 Piotr Czerwiñski <pius@pld.org.pl> 
   [0.6.1-1]
 - package is FHS 2.0 compliant,
