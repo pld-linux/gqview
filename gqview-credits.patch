@@ -6,7 +6,7 @@ diff -burN gqview-1.5.2.orig/configure.in gqview-1.5.2/configure.in
  AM_CONDITIONAL(HAVE_PNG, test "x$LIBPNG" != x)
  
 -AC_DEFINE_UNQUOTED(GQVIEW_HELPDIR, "$prefix/share/gqview")
-+AC_DEFINE_UNQUOTED(GQVIEW_HELPDIR, "$prefix/share/doc/gqview-1.5.2")
++AC_DEFINE_UNQUOTED(GQVIEW_HELPDIR, "$prefix/share/doc/gqview-1.5.6")
  AC_DEFINE_UNQUOTED(GQVIEW_HTMLDIR, "$prefix/share/gqview/help")
  
  dnl checks for functions
