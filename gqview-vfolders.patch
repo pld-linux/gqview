@@ -1,21 +1,24 @@
-diff -burN gqview-1.5.2.orig/gqview.desktop gqview-1.5.2/gqview.desktop
---- gqview-1.5.2.orig/gqview.desktop	2004-08-28 11:14:25.844191184 +0200
-+++ gqview-1.5.2/gqview.desktop	2004-08-28 11:19:24.938721904 +0200
-@@ -5,8 +5,10 @@
- GenericName[tr]=Resim göstericisi
+diff -urN gqview-1.5.4.orig/gqview.desktop gqview-1.5.4/gqview.desktop
+--- gqview-1.5.4.orig/gqview.desktop	2004-11-11 10:27:08.037266872 +0100
++++ gqview-1.5.4/gqview.desktop	2004-11-11 10:29:55.115867064 +0100
+@@ -6,16 +6,16 @@
  GenericName[fr]=Explorateur d'images
  GenericName[hu]=Képnéző
+ GenericName[es]=Visor de imágenes
 +GenericName[pl]=Przeglądarka obrazków
  Comment=View and manage images
  Comment[hu]=Képek megjelenítése és rendszerezése
+ Comment[es]=Visualiza y administra imágenes
 +Comment[pl]=Przeglądanie i manipulowanie obrazkami
  Exec=gqview -r %F
  Icon=gqview.png
  Type=Application
-@@ -14,4 +16,5 @@
- StartupNotify=false
- StartupWMClass=gqview
+ Terminal=false
+-# Startup notification disabled, since the remote -r switch may not open a new window...
+-#StartupNotify=false
+-#StartupWMClass=gqview
  Encoding=UTF-8
--Categories=Application;Graphics;
+-Categories=Application;Graphics;Viewer;
 +Categories=GTK;Graphics;Viewer;
+ MimeType=application/x-navi-animation;image/bmp;image/x-bmp;image/x-MS-bmp;image/gif;image/x-icon;image/jpeg;image/png;image/x-portable-anymap;image/x-portable-bitmap;image/x-portable-graymap;image/x-portable-pixmap;image/x-cmu-raster;image/x-sun-raster;image/x-tga;image/tiff;image/vnd.wap.wbmp;image/x-xbitmap;image/x-xpixmap;image/svg;image/svg+xml;
 +# vi: encoding=utf-8
