@@ -2,12 +2,13 @@ Summary:	Graphics file browser utility
 Summary(pl):	Narzêdzie do przegl±dania plików graficznych
 Name:		gqview
 Version:	1.3.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/gqview/%{name}-%{version}.tar.gz
 # Source0-md5:	0f2ce36475b2cdc8013545f5e3268034
 Patch0:		%{name}-etc_dir.patch
+Patch1:		%{name}-vfolders.patch
 URL:		http://gqview.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -38,6 +39,7 @@ i opcje filtrowania, jak równie¿ wsparcie dla zewnêtrznego edytora.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 rm -f missing
@@ -52,15 +54,9 @@ rm -f missing
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_pixmapsdir},%{_applnkdir}/Graphics/Viewers}
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	desktopdir=%{_applnkdir}/Graphics/Viewers \
-	mandir=%{_mandir}
-
-install %{name}.png $RPM_BUILD_ROOT%{_pixmapsdir}
-install %{name}.desktop $RPM_BUILD_ROOT%{_applnkdir}/Graphics/Viewers
+	DESTDIR=$RPM_BUILD_ROOT
 
 %find_lang %{name}
 
@@ -70,7 +66,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO ChangeLog
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/gqview
+%{_desktopdir}/gqview.desktop
+%{_pixmapsdir}/gqview.png
 %{_mandir}/man1/*
-%{_pixmapsdir}/*
-%{_applnkdir}/Graphics/Viewers/*
