@@ -13,7 +13,7 @@ BuildPrereq:	imlib-devel >= 1.8
 BuildPrereq:	gtk+-devel >= 1.2.0
 BuildPrereq:	glib-devel >= 1.2.0
 BuildPrereq:	XFree86-devel
-BuildRoot:      /tmp/%{name}-%{version}-root
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 GQview is a browser for graphics files.
