@@ -2,11 +2,11 @@ Summary:	graphics file browser utility
 Summary(pl):	narzêdzie do przegl±dania plików graficznych
 Name:		gqview
 Version:	0.7.0
-Release:	1
-Copyright:	GPL
+Release:	2
+License:	GPL
 Group:		X11/Applications/Graphics
 Group(pl):	X11/Aplikacje/Grafika
-Source0:	http://www.geocities.com/SiliconValley/Haven/5235/%{name}-%{version}.src.tgz
+Source:		http://www.geocities.com/SiliconValley/Haven/5235/%{name}-%{version}.src.tgz
 Patch:		gqview-desktop.patch
 URL:		http://www.geocities.com/SiliconValley/Haven/5235/view-over.html
 BuildRequires:	imlib-devel >= 1.8
