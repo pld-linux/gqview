@@ -61,7 +61,7 @@ diff -Nru gqview-1.3.8/src/ui_fileops.c gqview-1.3.8.new/src/ui_fileops.c
 +	
 +	if (home_etc) return home_etc;
 +	h2 = getenv("HOME_ETC");
-+	if (!h2) home_etc = homedir_old();
++	if (!h2 || (strncmp(h2, "", 1) == 0)) home_etc = homedir_old();
 +	else home_etc = g_locale_to_utf8(h2, -1, NULL, NULL, NULL);
 +	return home_etc;
 +}
