@@ -22,4 +22,4 @@
  Icon=gqview.png
  Terminal=0
  Type=Application
-+Categories=Graphics;X-Viewer
++Categories=Graphics;Viewer;
