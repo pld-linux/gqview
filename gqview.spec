@@ -5,7 +5,7 @@ Version:	1.5.5
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
-Source0:	http://dl.sourceforge.net/gqview/%{name}-%{version}.tar.gz
+Source0:	http://osdn.dl.sourceforge.net/gqview/%{name}-%{version}.tar.gz
 # Source0-md5:	8155e24a67e79da63530fa87701c6265
 Patch0:		%{name}-etc_dir.patch
 Patch1:		%{name}-vfolders.patch
