@@ -31,7 +31,7 @@ i opcje filtrowania, jak równie¿ wsparcie dla zewnêtrznego edytora.
 
 %build
 rm -f missinf
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure
