@@ -9,8 +9,8 @@ Group(pl):	X11/Aplikacje/Grafika
 Source0:	http://www.geocities.com/SiliconValley/Haven/5235/%{name}-%{version}.src.tgz
 Source1:	gqview.wmconfig
 URL:		http://www.geocities.com/SiliconValley/Haven/5235/view-over.html
+Requires:	gtk+ = 1.2.1
 BuildRoot:      /tmp/%{name}-%{version}-root
-Requires:	gtk+ >= 1.2.0
 
 %description
 GQview is a browser for graphics files.
