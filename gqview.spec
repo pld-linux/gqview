@@ -30,11 +30,11 @@ i opcje filtrowania, jak równie¿ wsparcie dla zewnêtrznego edytora.
 
 %build
 rm -f missing
+%{__gettextize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%{__gettextize}
 %configure
 
 %{__make}
