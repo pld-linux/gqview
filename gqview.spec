@@ -5,7 +5,7 @@ Version:	1.2.1
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
-Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 URL:		http://gqview.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
