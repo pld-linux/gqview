@@ -16,7 +16,7 @@ BuildRequires:	libpng-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
-
+%define		_mandir		%{_prefix}/man
 %description
 GQview is a browser for graphics files. Offering single click viewing
 of your graphics files. Includes thumbnail view, zoom and filtering
@@ -47,7 +47,8 @@ install -d $RPM_BUILD_ROOT{%{_pixmapsdir},%{_applnkdir}/Graphics/Viewers}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	desktopdir=%{_applnkdir}/Graphics/Viewers
+	desktopdir=%{_applnkdir}/Graphics/Viewers \
+	mandir=%{_mandir}
 
 install %{name}.png $RPM_BUILD_ROOT%{_pixmapsdir}
 install %{name}.desktop $RPM_BUILD_ROOT%{_applnkdir}/Graphics/Viewers
