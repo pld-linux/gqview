@@ -1,4 +1,4 @@
-Summary:	graphics file browser utility
+Summary:	Graphics file browser utility
 Summary(pl):	Narzêdzie do przegl±dania plików graficznych
 Name:		gqview
 Version:	1.3.2
