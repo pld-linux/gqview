@@ -1,22 +1,23 @@
 Summary:	Graphics file browser utility
 Summary(pl):	Narzêdzie do przegl±dania plików graficznych
 Name:		gqview
-Version:	1.5.6
+Version:	1.5.7
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
-Source0:	http://osdn.dl.sourceforge.net/gqview/%{name}-%{version}.tar.gz
-# Source0-md5:	b0136da8b13e55d8276d68b5f488aa44
+Source0:	http://dl.sourceforge.net/gqview/%{name}-%{version}.tar.gz
+# Source0-md5:	b1e58fd24ecc29457629f9c165d714bb
 Patch0:		%{name}-etc_dir.patch
 Patch1:		%{name}-vfolders.patch
 Patch2:		%{name}-home_etc.patch
 Patch3:		%{name}-localenames.patch
-Patch4:		%{name}-credits.patch
 URL:		http://gqview.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
+BuildRequires:	glib2-devel
 BuildRequires:	gtk+2-devel >= 2:2.2.0
+BuildRequires:	intltool
 BuildRequires:	libpng-devel
 BuildRequires:	pkgconfig
 Requires:	libjpeg-progs
@@ -47,13 +48,13 @@ i opcje filtrowania, jak równie¿ wsparcie dla zewnêtrznego edytora.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 mv -f po/{no,nb}.po
 mv -f po/{zh_CN.GB2312,zh_CN}.po
 
 %build
-%{__gettextize}
+glib-gettextize --copy --force
+intltoolize --copy --force
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
@@ -83,7 +84,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO ChangeLog
 %attr(755,root,root) %{_bindir}/gqview
-%{_datadir}/gqview
 %{_desktopdir}/gqview.desktop
 %{_pixmapsdir}/gqview.png
 %{_mandir}/man1/*
