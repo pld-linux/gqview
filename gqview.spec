@@ -19,6 +19,7 @@ BuildRequires:	gtk+2-devel >= 2:2.4.0
 BuildRequires:	intltool
 BuildRequires:	libpng-devel
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.197
 Requires:	libjpeg-progs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -52,8 +53,8 @@ mv -f po/{no,nb}.po
 mv -f po/{zh_CN.GB2312,zh_CN}.po
 
 %build
-glib-gettextize --copy --force
-intltoolize --copy --force
+%{__glib_gettextize}
+%{__intltoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
