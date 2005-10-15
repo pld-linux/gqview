@@ -11,7 +11,6 @@ Patch0:		%{name}-etc_dir.patch
 Patch1:		%{name}-vfolders.patch
 Patch2:		%{name}-home_etc.patch
 Patch3:		%{name}-localenames.patch
-Patch4:		%{name}-debug.patch
 URL:		http://gqview.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -49,7 +48,6 @@ i opcje filtrowania, jak równie¿ wsparcie dla zewnêtrznego edytora.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 mv -f po/{no,nb}.po
 mv -f po/{zh_CN.GB2312,zh_CN}.po
