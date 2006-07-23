@@ -2,7 +2,7 @@ Summary:	Graphics file browser utility
 Summary(pl):	Narzêdzie do przegl±dania plików graficznych
 Name:		gqview
 Version:	2.1.1
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/gqview/%{name}-%{version}.tar.gz
@@ -53,8 +53,8 @@ mv -f po/{no,nb}.po
 mv -f po/{zh_CN.GB2312,zh_CN}.po
 
 %build
-%{__glib_gettextize}
 %{__intltoolize}
+%{__glib_gettextize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
@@ -67,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+install AUTHORS README TODO ChangeLog $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+gzip -9nf $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}/{AUTHORS,README,TODO,ChangeLog}
 
 %find_lang %{name}
 
@@ -81,7 +84,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS README TODO ChangeLog
+#doc AUTHORS README TODO ChangeLog
+%docdir %{_docdir}/%{name}-%{version}
+%{_docdir}/%{name}-%{version}/*
 %attr(755,root,root) %{_bindir}/gqview
 %{_desktopdir}/gqview.desktop
 %{_pixmapsdir}/gqview.png
