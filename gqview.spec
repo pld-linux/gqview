@@ -24,7 +24,6 @@ Requires:	libjpeg-progs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		specflags_ia32		-fomit-frame-pointer 
-%define		_noautocompressdoc	README
 
 %description
 GQview is a browser for graphics files. Offering single click viewing
@@ -69,7 +68,8 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 install AUTHORS README TODO ChangeLog $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
-gzip -9nf $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}/{AUTHORS,README,TODO,ChangeLog}
+gzip -9nf $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}/{AUTHORS,TODO,ChangeLog}
+rm -f $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}/COPYING
 
 %find_lang %{name}
 
