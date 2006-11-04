@@ -1,12 +1,12 @@
-diff -ruN gqview-1.5.7./configure.in gqview-1.5.7/configure.in
---- gqview-1.5.7./configure.in	2005-02-06 22:51:59.000000000 +0100
-+++ gqview-1.5.7/configure.in	2005-02-06 22:56:17.665046896 +0100
-@@ -56,7 +56,7 @@
- localedir='${datadir}/locale'
- AC_SUBST(localedir)
+diff -urN gqview-2.1.3/configure.in gqview-2.1.3.new/configure.in
+--- gqview-2.1.3/configure.in	2006-11-04 23:15:52.000000000 +0100
++++ gqview-2.1.3.new/configure.in	2006-11-04 23:20:35.000000000 +0100
+@@ -25,7 +25,7 @@
+ dnl checks for functions
+ AC_CHECK_FUNCS(strverscmp)
  
--ALL_LINGUAS="ar be bg ca cs da de es et fi fr hu id it ja ko nl no pl pt_BR ro ru sk sl sv th tr uk vi zh_CN.GB2312 zh_TW"
-+ALL_LINGUAS="ar be bg ca cs da de es et fi fr hu id it ja ko nl nb pl pt_BR ro ru sk sl sv th tr uk vi zh_CN zh_TW"
+-ALL_LINGUAS="ar be bg ca cs da de eo es et eu fi fr hu id it ja ko nl no pl pt_BR ro ru sk sl sv th tr uk vi zh_CN.GB2312 zh_TW"
++ALL_LINGUAS="ar be bg ca cs da de eo es et eu fi fr hu id it ja ko nl nb pl pt_BR ro ru sk sl sv th tr uk vi zh_CN zh_TW"
  GETTEXT_PACKAGE=$PACKAGE
  AC_SUBST(GETTEXT_PACKAGE)
  AM_GLIB_GNU_GETTEXT
