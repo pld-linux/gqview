@@ -1,5 +1,5 @@
 Summary:	Graphics file browser utility
-Summary(pl):	Narzêdzie do przegl±dania plików graficznych
+Summary(pl.UTF-8):   NarzÄ™dzie do przeglÄ…dania plikÃ³w graficznych
 Name:		gqview
 Version:	2.1.5
 Release:	1
@@ -30,16 +30,16 @@ GQview is a browser for graphics files. Offering single click viewing
 of your graphics files. Includes thumbnail view, zoom and filtering
 features. And external editor support.
 
-%description -l fr
+%description -l fr.UTF-8
 GQview est un explorateur de fichiers graphiques. Il permet d'un
-simple clic l'affichage de vos fichiers graphiques. Les capacités
+simple clic l'affichage de vos fichiers graphiques. Les capacitÃ©s
 suivantes sont incluses: vue d'imagettes, zoom, filtres et support
-d'éditeurs externes.
+d'Ã©diteurs externes.
 
-%description -l pl
-GQview jest przegl±dark± plików graficznych. Mo¿esz przegl±daæ swoje
-pliki graficzne jednym klikniêciem myszy. Zawiera widok miniatur, zoom
-i opcje filtrowania, jak równie¿ wsparcie dla zewnêtrznego edytora.
+%description -l pl.UTF-8
+GQview jest przeglÄ…darkÄ… plikÃ³w graficznych. MoÅ¼esz przeglÄ…daÄ‡ swoje
+pliki graficzne jednym klikniÄ™ciem myszy. Zawiera widok miniatur, zoom
+i opcje filtrowania, jak rÃ³wnieÅ¼ wsparcie dla zewnÄ™trznego edytora.
 
 %prep
 %setup -q
