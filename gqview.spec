@@ -1,5 +1,5 @@
 Summary:	Graphics file browser utility
-Summary(pl.UTF-8):   Narzędzie do przeglądania plików graficznych
+Summary(pl.UTF-8):	Narzędzie do przeglądania plików graficznych
 Name:		gqview
 Version:	2.1.5
 Release:	1
