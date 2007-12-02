@@ -2,7 +2,7 @@ Summary:	Graphics file browser utility
 Summary(pl.UTF-8):	Narzędzie do przeglądania plików graficznych
 Name:		gqview
 Version:	2.1.5
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/gqview/%{name}-%{version}.tar.gz
@@ -52,7 +52,7 @@ mv -f po/{no,nb}.po
 mv -f po/{zh_CN.GB2312,zh_CN}.po
 
 %build
-%{__intltoolize}
+#%{__intltoolize}
 %{__glib_gettextize}
 %{__aclocal}
 %{__autoconf}
