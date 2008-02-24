@@ -2,7 +2,7 @@ Summary:	Graphics file browser utility
 Summary(pl.UTF-8):	Narzędzie do przeglądania plików graficznych
 Name:		gqview
 Version:	2.1.5
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/gqview/%{name}-%{version}.tar.gz
@@ -11,6 +11,7 @@ Patch0:		%{name}-etc_dir.patch
 Patch1:		%{name}-vfolders.patch
 Patch2:		%{name}-home_etc.patch
 Patch3:		%{name}-localenames.patch
+Patch4:		%{name}-enable_dng.patch
 URL:		http://gqview.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -46,6 +47,7 @@ i opcje filtrowania, jak również wsparcie dla zewnętrznego edytora.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 mv -f po/{no,nb}.po
 mv -f po/{zh_CN.GB2312,zh_CN}.po
