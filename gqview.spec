@@ -15,7 +15,7 @@ Patch4:		%{name}-enable_dng.patch
 URL:		http://gqview.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	gtk+2-devel >= 2:2.4.0
 BuildRequires:	libpng-devel
 BuildRequires:	pkgconfig
